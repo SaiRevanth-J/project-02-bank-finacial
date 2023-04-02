@@ -49,7 +49,7 @@ pipeline {
             steps{
 
                 dir('test-server'){
-                sh 'sudo chmod 600 DEMOKEY'
+                sh 'sudo chmod 600 DEMOKEY.pem'
                 sh 'terraform init'
                 sh 'terraform validate'
                 sh 'terraform apply --auto-approve'
