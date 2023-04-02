@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     tools {
-        maven "maven_home"
+        maven "maven"
     }
 
     stages {
@@ -47,11 +47,14 @@ pipeline {
                 
         stage (' configuring Test-server with terraform & ansible and deploying'){
             steps{
-                sh 'cd test-server'
-                sh 'sudo chmod 600 DEMOKEY.pem'
+
+                dir('test-server'){
+                sh 'sudo chmod 600 /test-server/DEMOKEY'
                 sh 'terraform init'
                 sh 'terraform validate'
                 sh 'terraform apply --auto-approve'
+                }
+               
             }
         }
        

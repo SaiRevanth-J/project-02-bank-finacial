@@ -21,7 +21,7 @@ resource "aws_instance" "test-server" {
  }
  
  provisioner "local-exec" {
- command = "ansible-playbook test-bank-playbook.yml "
+ command = "ansible-playbook /var/lib/jenkins/workspace/project_k/test-server/test-bank-playbook.yml "
   } 
 }
 
