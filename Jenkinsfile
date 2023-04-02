@@ -9,7 +9,7 @@ pipeline {
         stage('Git checkout') {
             steps {
               
-                   git 'https://github.com/SaiRevanth-J/Staragile-bank-finance-project-02.git'
+                   git 'https://github.com/SaiRevanth-J/project-02-bank-finacial.git'
             
                 }
             }
@@ -23,7 +23,7 @@ pipeline {
         stage('Publish HTML') {
               steps {
               
-                    publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: false, reportDir: '/var/lib/jenkins/workspace/insure-me/target/surefire-reports/', reportFiles: 'index.html', reportName: 'Insure-me-HTML Report', reportTitles: '', useWrapperFileDirectly: true])
+                    publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: false, reportDir: '/var/lib/jenkins/workspace/project_k/target/surefire-reports/', reportFiles: 'index.html', reportName: 'project_k-HTML Report', reportTitles: '', useWrapperFileDirectly: true])
                 }
         }
         
@@ -43,10 +43,8 @@ pipeline {
                   sh 'sudo docker push revanthkumar9/bank-finance:${BUILD_NUMBER}.0 '
                   }
                 }
+        }    
                 
-                 {
-    
-        }
         stage (' configuring Test-server with terraform & ansible and deploying'){
             steps{
                 sh 'cd test-server'
@@ -56,14 +54,7 @@ pipeline {
                 sh 'terraform apply --auto-approve'
             }
         }
-                }
-        stage('waiting to start app in test-server') {
-              steps {
-                  
-                  sh 'sleep 20'
-                           
-                }
-            }
+       
        /* stage('Selenium test') {
               steps {
                   
