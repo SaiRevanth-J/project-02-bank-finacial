@@ -61,7 +61,7 @@ pipeline {
         stage('waitng to start the app') {
               steps {
                   
-                  sh ' sleep 60'
+                  sh ' sleep 40'
                            
                 }
             }
@@ -69,7 +69,7 @@ pipeline {
         stage('Selenium test') {
               steps {
                   
-                  sh 'java -jar seleniumbank.jar'
+                  sh 'sudo java -jar seleniumbank.jar'
                   sh"echo 'application is logged in succussfully done' "
                            
                 }
