@@ -1,3 +1,7 @@
+resource "aws_eip_association" "eip_assoc" {
+  instance_id   = aws_instance.test-server.id
+  allocation_id = "eipalloc-083aadbe2bb30d7b5"
+}
 resource "aws_instance" "test-server" {
   ami           = "ami-00c39f71452c08778" 
   instance_type = "t2.micro" 
@@ -27,6 +31,6 @@ resource "aws_instance" "test-server" {
 
 output "test-server_public_ip" {
 
-  value = aws_instance.test-server.public_ip
+  value = aws_eip_association.eip_assoc.public_ip
   
 }
