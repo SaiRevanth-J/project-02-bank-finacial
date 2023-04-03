@@ -70,7 +70,7 @@ pipeline {
               steps {
                   
                   sh 'java -jar seleniumbank.jar'
-                  sh"echo 'application is logged in succussfully' "
+                  sh"echo 'application is logged in succussfully done' "
                            
                 }
             }
