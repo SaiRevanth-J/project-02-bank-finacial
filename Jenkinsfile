@@ -61,7 +61,7 @@ pipeline {
         stage('waitng to start the app') {
               steps {
                   
-                  sh ' sleep 50'
+                  sh ' sleep 60'
                            
                 }
             }
