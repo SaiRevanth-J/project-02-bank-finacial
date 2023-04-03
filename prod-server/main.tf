@@ -21,7 +21,7 @@ resource "aws_instance" "prod-server" {
  }
  
  provisioner "local-exec" {
- command = "ansible-playbook /var/lib/jenkins/workspace/project_k/prod-server/prod-bank-playbook.yml "
+ command = "ansible-playbook /var/lib/jenkins/workspace/project-02-banking/prod-server/prod-bank-playbook.yml "
   } 
 }
 
