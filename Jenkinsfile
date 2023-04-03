@@ -57,6 +57,14 @@ pipeline {
                
             }
         }
+
+        stage('waitng to start the app') {
+              steps {
+                  
+                  sh ' sleep 50'
+                           
+                }
+            }
        
         stage('Selenium test') {
               steps {
