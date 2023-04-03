@@ -23,7 +23,7 @@ pipeline {
         stage('Publish HTML') {
               steps {
               
-                    publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: false, reportDir: '/var/lib/jenkins/workspace/project_k/target/surefire-reports/', reportFiles: 'index.html', reportName: 'project_k-HTML Report', reportTitles: '', useWrapperFileDirectly: true])
+                    publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: false, reportDir: '/var/lib/jenkins/workspace/project-02-banking/target/surefire-reports/', reportFiles: 'index.html', reportName: 'project-02-banking-HTML Report', reportTitles: '', useWrapperFileDirectly: true])
                 }
         }
         
@@ -58,34 +58,27 @@ pipeline {
             }
         }
        
-       /* stage('Selenium test') {
+        stage('Selenium test') {
               steps {
                   
-                  sh 'cd ..'
-                  sh 'java -jar seleniumtest.jar'
-                  sh"echo 'app tested succussfully' "
+                  sh 'java -jar seleniumbank.jar'
+                  sh"echo 'application is logged in succussfully' "
                            
                 }
             }
           
-         stage ('setting Test-server with terraform'){
+         stage ('setting Prod-Server with terraform and ansible'){
             steps{
-                sh 'cd prod-server'
+                
+                dir('prod-server'){
                 sh 'chmod 600 DEMOKEY.pem'
                 sh'terraform init'
                 sh'terraform validate'
                 sh'terraform apply --auto-approve'
             }
         }
+         }
 
-         stage('Deploy the Application in Prod-server') {
-              steps {
-                  
-                  sh 'ansible-playbook prod-bank-playbook.yml'
-                  sh" ansible prod-server -b -m shell -a 'sudo docker run -id -p 7000:8081 --name banking${BUILD_NUMBER} revanthkumar9/bank-finance:${BUILD_NUMBER}.0' "
-              
-                }
-            }*/
         
     }
 }
